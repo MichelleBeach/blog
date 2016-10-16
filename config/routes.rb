@@ -1,10 +1,16 @@
-Rails.application.routes.draw do
+QuickBlog::Application.routes.draw do
+  
+  
   resources :users
-  resources :posts
+  resources :posts do
+    resources :comments, :only => [:create]
+  end
+ 
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
 
   root 'posts#index'
   # The priority is based upon order of creation: first created -> highest priority.
