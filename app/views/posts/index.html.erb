@@ -1,6 +1,20 @@
 <p id="notice"><%= notice %></p>
+<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "security app", '#', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home",   '#' %></li>
+            <li><%= link_to "Help",   '#' %></li>
+            <li><%= link_to "Log in", 'login' %></li>
 
-<h1>Listing Posts</h1>
+          </ul>
+        </nav>
+      </div>
+      </header>
+<div class="center jumbotron">
+  <h1>A Blog on Web Application Security</h1>
+<h2> This is the home page for our CSCE 813 group project </h2>
 
 <%= render :partial => @posts %>
 
@@ -11,7 +25,12 @@
   </ul>
 <% else %>
   <ul>
-    <li><%= link_to 'Login', 'login' %></li>
-    <li><%= link_to 'Sign Up', 'users/new' %></li>
+     
+            <li><%= link_to 'Sign up now!', 'users/new', class: "btn btn-lg btn-primary" %></li>
   </ul>
+
+
+
+<%= link_to image_tag("padlock.jpg", alt: "Rails logo"),
+            '/assets/images/padlock.jpg'%>
 <% end %>
