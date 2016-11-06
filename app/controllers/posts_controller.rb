@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :require_user, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update]
+  before_action :require_user, only: [:new, :create, :edit, :update]
 
   # GET /posts
   # GET /posts.json
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-       respond_to do |format|
+    respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
       format.atom
@@ -18,6 +18,11 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    if @post.nil?
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Post not found' }
+      end
+    end
   end
 
   # GET /posts/new
@@ -27,12 +32,22 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    if @post.nil?
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Post not found' }
+      end
+    else
+      if @post.user_id != current_user.id
+        respond_to do |format|
+          format.html { redirect_to @post, notice: 'Cannot edit this post' }
+        end
+      end
+    end
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    puts post_params
     @post = Post.new(post_params)
     @post.user_id = current_user.id
 
@@ -64,6 +79,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    #should never get here
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
@@ -74,7 +90,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.find_by_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

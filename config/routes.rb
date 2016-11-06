@@ -1,8 +1,18 @@
 QuickBlog::Application.routes.draw do
   
+  #Users  
+  resources :users, :only => [:new, :create, :show, :edit, :update]
+  #get 'users' => 'users#index'          #display a list of all users
+  #get 'users/new' => 'users#new'        #html form for creating a new user
+  #post 'users' => 'users#create'        #create a new user
+  #get 'users/:id' => 'users#show'       #display a specific user
+  #get 'users/:id/edit' => 'users#edit'  #html form for editing a user
+  #put 'users/:id' => 'photos#update'    #update a specific user
+  #delete 'users/:id' => 'photos#destroy' #delete a specific user
   
-  resources :users
-  resources :posts do
+  #Posts
+  resources :posts, :only => [:index, :new, :create, :show, :edit, :update] do
+    #Nested Comments
     resources :comments, :only => [:create]
   end
  
@@ -13,6 +23,11 @@ QuickBlog::Application.routes.draw do
 
 
   root 'posts#index'
+
+  #catch all to send undefined routes to the root page
+  get "*path" => redirect("/")
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -28,7 +43,7 @@ QuickBlog::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  # Example resource route with options:
+  #Example resource route with options:
   #   resources :products do
   #     member do
   #       get 'short'
