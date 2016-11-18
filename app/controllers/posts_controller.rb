@@ -74,7 +74,7 @@ class PostsController < ApplicationController
           format.json { render json: @post.errors, status: :unprocessable_entity }
         end
       else
-        format.html { render :edit }
+        format.html { render :show }
         format.json { render json: @post.errors, status: :unauthorized }
       end
     end

@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if current_user
-        format.html { render :new }
+        format.html { render current_user }
         format.json { render json: @user.errors, status: :unauthorized }
       else
         if @user.save
@@ -59,9 +59,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if current_user != @user.id
+      if current_user != @user.i
         @user = current_user
-        format.html { render :edit }
+        format.html { render current_user }
         format.json { render json: @user.errors, status: :unauthorized }
       else
         if @user.update(user_params)
