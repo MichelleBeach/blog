@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if current_user
-        format.html { render current_user }
+        format.html { redirect_to current_user }
         format.json { render json: @user.errors, status: :unauthorized }
       else
         if @user.save
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if current_user != @user.i
         @user = current_user
-        format.html { render current_user }
+        format.html { redirect_to current_user }
         format.json { render json: @user.errors, status: :unauthorized }
       else
         if @user.update(user_params)
