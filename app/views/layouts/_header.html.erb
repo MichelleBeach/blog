@@ -4,14 +4,14 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help",   help_path %></li>
+        <li><%= link_to "Help", help_path %></li>
 
         <% if current_user %>
             <li><%= link_to 'Edit User', edit_user_path(current_user) %></li>
             <li><%= link_to 'Log out', logout_path, method: "delete" %></li>
         <% else %>
             <li><%= link_to 'Log in', login_path %></li>
-            <li> <%= link_to 'Sign up', 'users/new'%></li>
+            <li><%= link_to 'Sign up', new_user_path %></li>
         <% end %>
       </ul>
     </nav>

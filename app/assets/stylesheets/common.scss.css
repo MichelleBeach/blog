@@ -1,9 +1,9 @@
 input[type="submit"] {
-  @include button;
+#  @include button;
 }
 
 div#main {
-  @include grid-row;
+#  @include grid-row;
 }
 
 footer {

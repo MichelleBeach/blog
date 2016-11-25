@@ -4,9 +4,6 @@ QuickBlog::Application.routes.draw do
   get  'help' =>'static_pages#help'
   get  'contact' => 'static_pages#contact'
 
-
-  get 'static_pages/home'
-
   #Users  
   resources :users, :only => [:new, :create, :show, :edit, :update]
   #get 'users' => 'users#index'          #display a list of all users
