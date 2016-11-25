@@ -1,8 +1,9 @@
 QuickBlog::Application.routes.draw do
 
-  get 'static_pages/about'
+  get  'about' =>'static_pages#about'
+  get  'help' =>'static_pages#help'
+  get  'contact' => 'static_pages#contact'
 
-  get 'static_pages/help'
 
   get 'static_pages/home'
 
@@ -26,6 +27,7 @@ QuickBlog::Application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
 
 
   root 'posts#index'

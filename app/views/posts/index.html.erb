@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <div class="center jumbotron">
+  <div>
+
+    <%= link_to image_tag("padlock.jpg", alt: "Rails logo"),
+                '/assets/images/padlock.jpg'%>
+
+  </div>
   <h1>A Blog on Web Application Security</h1>
 <h2> This is the home page for our CSCE 813 group project </h2>
 
@@ -11,11 +17,8 @@
       <p><%= link_to 'New Post', new_post_path %></p>
     </div>
 <% else %>
-    <div>
-    <%= link_to 'Sign up now!', 'users/new', class: "btn btn-lg btn-primary" %>
-    </div>
 
 
-<%= link_to image_tag("padlock.jpg", alt: "Rails logo"),
-            '/assets/images/padlock.jpg'%>
+
 <% end %>
+  </div>
